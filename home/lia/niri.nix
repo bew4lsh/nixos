@@ -191,8 +191,8 @@ in
         // Quit niri
         Mod+Shift+E { quit; }
 
-        // Lock screen (you'll need swaylock or similar)
-        // Mod+L { spawn "swaylock"; }
+        // Lock screen
+        Mod+Escape { spawn "swaylock"; }
 
         // Screenshots
         Print { screenshot; }

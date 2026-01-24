@@ -4,15 +4,35 @@
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
+
+    # System
     ../../modules/system/boot.nix
     ../../modules/system/networking.nix
     ../../modules/system/audio.nix
     ../../modules/system/locale.nix
+    ../../modules/system/tailscale.nix
+    ../../modules/system/btrbk.nix
+    ../../modules/system/printing.nix
+    ../../modules/system/syncthing.nix
+    ../../modules/system/flatpak.nix
+    ../../modules/system/plymouth.nix
+    ../../modules/system/virtualization.nix
+
+    # Hardware
     ../../modules/hardware/amd-cpu.nix
     ../../modules/hardware/amd-gpu.nix
+
+    # Desktop
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/niri.nix
+
+    # Programs
     ../../modules/programs/gaming.nix
+
+    # Optional - enable after first boot and setup:
+    # ../../modules/system/sops.nix        # After creating age keys
+    # ../../modules/system/lanzaboote.nix  # After first boot, see instructions
+    # ../../modules/system/impermanence.nix # After creating @persist subvolume
   ];
 
   networking.hostName = "adrasteia";
