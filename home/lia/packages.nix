@@ -1,0 +1,77 @@
+{ config, pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    # Development - Python
+    python3
+    python3Packages.pip
+    python3Packages.virtualenv
+    python3Packages.ipython
+
+    # Development - C/C++ (for neovim treesitter)
+    gcc
+    gnumake
+    cmake
+    clang
+
+    # Development - General
+    git
+    gh  # GitHub CLI
+    lazygit
+    delta  # Better git diff
+
+    # JetBrains (DataGrip)
+    jetbrains.datagrip
+
+    # CLI tools
+    ripgrep
+    fd
+    sd  # sed alternative
+    jq
+    yq-go
+    tokei  # Code statistics
+    hyperfine  # Benchmarking
+    tldr  # Simplified man pages
+    trash-cli
+    duf  # Disk usage
+    ncdu  # NCurses disk usage
+    procs  # Process viewer
+    bottom  # System monitor
+    bandwhich  # Network monitor
+
+    # Archive tools
+    unzip
+    p7zip
+    unrar
+
+    # Media
+    mpv
+    yt-dlp
+
+    # Image tools
+    imagemagick
+    ffmpeg
+
+    # Networking
+    wget
+    curl
+    rsync
+    aria2
+
+    # System info
+    neofetch
+    fastfetch
+    cpufetch
+
+    # Nix tools
+    nix-tree
+    nix-diff
+    comma  # Run programs without installing
+
+    # Misc
+    pciutils
+    usbutils
+    lshw
+    dmidecode
+  ];
+}
