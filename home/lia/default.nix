@@ -19,6 +19,8 @@
     ./gtk.nix
     ./packages.nix
     ./apps.nix
+    ./spotify.nix
+    ./theming.nix
 
     # Development
     ./development.nix

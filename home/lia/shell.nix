@@ -227,13 +227,7 @@
     git = true;
   };
 
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "base16";
-      style = "numbers,changes";
-    };
-  };
+  # bat is configured in theming.nix with Rosé Pine theme
 
   programs.fzf = {
     enable = true;
