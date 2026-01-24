@@ -20,6 +20,9 @@
     lazygit
     delta  # Better git diff
 
+    # AI Tools
+    claude-code  # Anthropic's CLI coding assistant
+
     # JetBrains (DataGrip)
     jetbrains.datagrip
 
