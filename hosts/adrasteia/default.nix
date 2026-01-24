@@ -17,6 +17,7 @@
     ../../modules/system/flatpak.nix
     ../../modules/system/plymouth.nix
     ../../modules/system/virtualization.nix
+    ../../modules/system/containers.nix
 
     # Hardware
     ../../modules/hardware/amd-cpu.nix
