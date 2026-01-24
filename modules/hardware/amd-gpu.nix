@@ -22,10 +22,6 @@
       # AMD specific
       rocmPackages.clr.icd  # OpenCL
     ];
-
-    extraPackages32 = with pkgs.driversi686Linux; [
-      vulkan-loader
-    ];
   };
 
   # Environment variables for AMD
