@@ -103,7 +103,7 @@
 
     # Fonts
     inter
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
 
     # Cursor themes
     rose-pine-cursor
