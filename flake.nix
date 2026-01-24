@@ -28,6 +28,23 @@
       url = "github:bew4lsh/nvim";
       flake = false;
     };
+
+    # Secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Secure Boot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Impermanence (ephemeral root)
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, niri, ... }@inputs:

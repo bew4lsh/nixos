@@ -2,16 +2,28 @@
 
 {
   imports = [
+    # Desktop
     ./niri.nix
     ./waybar.nix
     ./fuzzel.nix
     ./mako.nix
+    ./lock.nix
+    ./wallpaper.nix
+
+    # Programs
     ./wezterm.nix
     ./neovim.nix
     ./firefox.nix
     ./shell.nix
     ./gtk.nix
     ./packages.nix
+    ./apps.nix
+
+    # Development
+    ./development.nix
+    ./git.nix
+    ./ssh.nix
+    ./gpg.nix
   ];
 
   home = {
