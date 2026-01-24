@@ -23,6 +23,11 @@
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-config = {
+      url = "github:bew4lsh/nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, niri, ... }@inputs:
