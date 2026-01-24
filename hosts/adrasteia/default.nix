@@ -25,6 +25,7 @@
     # Desktop
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/niri.nix
+    ../../modules/system/swayosd.nix
 
     # Programs
     ../../modules/programs/gaming.nix

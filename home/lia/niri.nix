@@ -285,24 +285,36 @@ in
         Mod+WheelScrollDown { focus-workspace-down; }
         Mod+WheelScrollUp { focus-workspace-up; }
 
-        // Media keys
-        XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-        XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
-        XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-        XF86AudioMicMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+        // Media keys (with OSD feedback via swayosd)
+        XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume" "raise"; }
+        XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume" "lower"; }
+        XF86AudioMute { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+        XF86AudioMicMute { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
-        XF86MonBrightnessUp { spawn "brightnessctl" "set" "5%+"; }
-        XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
+        XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
+        XF86MonBrightnessDown { spawn "swayosd-client" "--brightness" "lower"; }
 
         XF86AudioPlay { spawn "playerctl" "play-pause"; }
         XF86AudioPrev { spawn "playerctl" "previous"; }
         XF86AudioNext { spawn "playerctl" "next"; }
 
+        // Caps lock indicator
+        Caps_Lock { spawn "swayosd-client" "--caps-lock"; }
+
         // Clipboard history
         Mod+V { spawn "sh" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
-        // Power menu (you can customize this)
+        // Emoji picker
+        Mod+Period { spawn "bemoji" "-t"; }
+
+        // Color picker (copies hex to clipboard)
+        Mod+Shift+C { spawn "sh" "-c" "hyprpicker -a"; }
+
+        // Power menu
         Mod+Shift+P { spawn "sh" "-c" "echo -e 'logout\nsuspend\nreboot\nshutdown' | fuzzel -d | xargs -I {} sh -c 'case {} in logout) niri msg action quit;; suspend) systemctl suspend;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac'"; }
+
+        // Quick settings (audio output switcher)
+        Mod+A { spawn "pavucontrol"; }
     }
   '';
 

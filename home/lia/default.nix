@@ -9,6 +9,7 @@
     ./mako.nix
     ./lock.nix
     ./wallpaper.nix
+    ./desktop-utils.nix
 
     # Programs
     ./wezterm.nix
