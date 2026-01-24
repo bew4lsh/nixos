@@ -20,7 +20,7 @@
     nodePackages.yarn
 
     # Python (base is in packages.nix, extras here)
-    python3Packages.poetry
+    poetry
     python3Packages.pytest
     python3Packages.mypy
     ruff
