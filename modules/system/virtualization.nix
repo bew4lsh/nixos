@@ -30,7 +30,7 @@
     virt-manager
     virt-viewer
     spice-gtk
-    win-virtio  # VirtIO drivers ISO for Windows
+    virtio-win  # VirtIO drivers ISO for Windows
     swtpm       # TPM emulator
 
     # Looking Glass client
