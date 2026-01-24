@@ -17,7 +17,7 @@
 
       # VA-API for hardware video acceleration
       libvdpau-va-gl
-      vaapiVdpau
+      libva-vdpau-driver
 
       # AMD specific
       amdvlk
