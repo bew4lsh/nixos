@@ -84,6 +84,9 @@
       # Start starship prompt
       eval "$(starship init bash)"
 
+      # Fnm (Fast Node Manager)
+      eval "$(fnm env --use-on-cd --version-file-strategy local --corepack-enabled)"
+
       # Start zellij if not already in a session (optional, uncomment if desired)
       # if [[ -z "$ZELLIJ" && -z "$INSIDE_EMACS" && -z "$VSCODE_INJECTION" ]]; then
       #   zellij attach -c main
