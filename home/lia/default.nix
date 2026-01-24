@@ -15,6 +15,7 @@
     ./neovim.nix
     ./firefox.nix
     ./shell.nix
+    ./glow.nix
     ./gtk.nix
     ./packages.nix
     ./apps.nix
