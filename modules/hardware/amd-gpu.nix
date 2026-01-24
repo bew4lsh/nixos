@@ -20,13 +20,11 @@
       libva-vdpau-driver
 
       # AMD specific
-      amdvlk
       rocmPackages.clr.icd  # OpenCL
     ];
 
     extraPackages32 = with pkgs.driversi686Linux; [
       vulkan-loader
-      amdvlk
     ];
   };
 
