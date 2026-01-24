@@ -41,7 +41,7 @@
     libva-utils      # vainfo
     vdpauinfo
     vulkan-tools     # vulkaninfo
-    glxinfo
+    mesa-demos       # glxinfo
     clinfo
     radeontop        # GPU monitoring
   ];
