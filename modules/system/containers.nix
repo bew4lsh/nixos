@@ -20,8 +20,8 @@
     };
   };
 
-  # Add user to docker group
-  users.users.lia.extraGroups = [ "docker" ];
+  # Add user to docker group (merged with other groups in host config)
+  # users.users.lia.extraGroups defined in hosts/adrasteia/default.nix
 
   # Container tools
   environment.systemPackages = with pkgs; [

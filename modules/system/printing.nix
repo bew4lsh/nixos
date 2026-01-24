@@ -41,8 +41,8 @@
     ];
   };
 
-  # Add user to scanner group
-  users.users.lia.extraGroups = [ "scanner" "lp" ];
+  # Add user to scanner group (merged with other groups in host config)
+  # users.users.lia.extraGroups defined in hosts/adrasteia/default.nix
 
   # GUI tools
   environment.systemPackages = with pkgs; [

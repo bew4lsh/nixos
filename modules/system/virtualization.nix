@@ -28,8 +28,8 @@
   # Enable default network
   networking.firewall.trustedInterfaces = [ "virbr0" ];
 
-  # User permissions
-  users.users.lia.extraGroups = [ "libvirtd" "kvm" ];
+  # User permissions (merged with other groups in host config)
+  # users.users.lia.extraGroups defined in hosts/adrasteia/default.nix
 
   # Virt-manager GUI
   programs.virt-manager.enable = true;

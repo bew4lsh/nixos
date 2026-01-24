@@ -50,6 +50,14 @@
       "audio"
       "input"
       "gamemode"
+      # Containers
+      "docker"
+      # Virtualization
+      "libvirtd"
+      "kvm"
+      # Printing/scanning
+      "scanner"
+      "lp"
     ];
     shell = pkgs.bash;
   };
