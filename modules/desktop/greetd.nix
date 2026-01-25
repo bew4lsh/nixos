@@ -2,11 +2,12 @@
 
 {
   # greetd display manager with tuigreet
+  # Rosé Pine themed
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --theme 'border=magenta;text=white;prompt=green;time=gray;action=cyan;button=yellow;container=black;input=white'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --theme 'border=#c4a7e7;text=#e0def4;prompt=#9ccfd8;time=#6e6a86;action=#ebbcba;button=#31748f;container=#1f1d2e;input=#e0def4'";
         user = "greeter";
       };
     };

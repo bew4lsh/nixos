@@ -45,6 +45,12 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+
+    # Spicetify for Spotify theming
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, niri, ... }@inputs:

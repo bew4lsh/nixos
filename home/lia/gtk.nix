@@ -43,14 +43,11 @@
     '';
   };
 
-  # Qt theming (matches GTK)
+  # Qt theming (use Kvantum for Rosé Pine consistency)
   qt = {
     enable = true;
-    platformTheme.name = "gtk3";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
   };
 
   # DConf settings for GNOME apps
@@ -108,8 +105,5 @@
     # Cursor themes
     rose-pine-cursor
 
-    # For Qt apps
-    adwaita-qt
-    adwaita-qt6
   ];
 }

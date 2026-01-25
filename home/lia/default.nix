@@ -9,6 +9,7 @@
     ./mako.nix
     ./lock.nix
     ./wallpaper.nix
+    ./desktop-utils.nix
 
     # Programs
     ./wezterm.nix
@@ -19,6 +20,8 @@
     ./gtk.nix
     ./packages.nix
     ./apps.nix
+    ./spotify.nix
+    ./theming.nix
 
     # Development
     ./development.nix

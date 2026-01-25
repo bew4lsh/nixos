@@ -17,6 +17,7 @@
     ../../modules/system/flatpak.nix
     ../../modules/system/plymouth.nix
     ../../modules/system/virtualization.nix
+    ../../modules/system/containers.nix
 
     # Hardware
     ../../modules/hardware/amd-cpu.nix
@@ -25,6 +26,7 @@
     # Desktop
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/niri.nix
+    ../../modules/system/swayosd.nix
 
     # Programs
     ../../modules/programs/gaming.nix
@@ -48,6 +50,14 @@
       "audio"
       "input"
       "gamemode"
+      # Containers
+      "docker"
+      # Virtualization
+      "libvirtd"
+      "kvm"
+      # Printing/scanning
+      "scanner"
+      "lp"
     ];
     shell = pkgs.bash;
   };

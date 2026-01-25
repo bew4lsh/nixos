@@ -12,6 +12,10 @@
     golangci-lint
     delve
 
+    # Zig
+    zig
+    zls  # Zig language server
+
     # Node.js (using fnm for version management)
     fnm
     nodejs_22
@@ -25,6 +29,18 @@
     python3Packages.mypy
     ruff
     uv
+
+    # Python - Data Science
+    python3Packages.pandas
+    python3Packages.polars
+    python3Packages.numpy
+    python3Packages.scipy
+    python3Packages.matplotlib
+    python3Packages.seaborn
+    python3Packages.plotly
+    python3Packages.jupyterlab
+    python3Packages.notebook
+    python3Packages.ipywidgets
 
     # C/C++
     gcc
@@ -43,15 +59,29 @@
     automake
     libtool
 
-    # Database tools
+    # Database clients
     sqlite
     postgresql
-    dbeaver-bin  # GUI database client
+    mysql84      # MySQL client
+    mongosh      # MongoDB shell
+    redis        # Redis CLI
+    duckdb       # Analytical database
+    usql         # Universal database CLI (supports SQL Server, Postgres, MySQL, etc.)
+    # clickhouse  # Uncomment if needed - large package
+
+    # Database GUI
+    dbeaver-bin
+
+    # Data tools
+    visidata     # TUI spreadsheet/data viewer
+    csvlens      # CSV viewer TUI
+    miller       # CSV/JSON/etc processor
 
     # API tools
     httpie
     curlie  # curl with httpie-like output
     insomnia  # REST client GUI
+    postman   # API testing
 
     # Formatters & Linters
     treefmt  # Universal formatter
@@ -66,6 +96,8 @@
     watchexec  # File watcher
     hyperfine  # Benchmarking
     tokei  # Code statistics
+    entr  # Run commands on file change
+    act   # Run GitHub Actions locally
   ];
 
   # Direnv for per-project environments
