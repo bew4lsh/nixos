@@ -278,7 +278,7 @@
     };
   };
 
-  # Yazi file manager
+  # Yazi file manager with Rosé Pine theme
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
@@ -288,6 +288,86 @@
         sort_by = "natural";
         sort_dir_first = true;
         linemode = "size";
+      };
+    };
+    theme = {
+      manager = {
+        cwd = { fg = "#9ccfd8"; };
+        hovered = { fg = "#e0def4"; bg = "#26233a"; };
+        preview_hovered = { underline = true; };
+        find_keyword = { fg = "#f6c177"; italic = true; };
+        find_position = { fg = "#eb6f92"; bg = "reset"; italic = true; };
+        marker_selected = { fg = "#9ccfd8"; bg = "#9ccfd8"; };
+        marker_copied = { fg = "#f6c177"; bg = "#f6c177"; };
+        marker_cut = { fg = "#eb6f92"; bg = "#eb6f92"; };
+        tab_active = { fg = "#e0def4"; bg = "#191724"; };
+        tab_inactive = { fg = "#e0def4"; bg = "#26233a"; };
+        tab_width = 1;
+        border_symbol = "│";
+        border_style = { fg = "#524f67"; };
+      };
+      status = {
+        separator_open = "";
+        separator_close = "";
+        separator_style = { fg = "#26233a"; bg = "#26233a"; };
+        mode_normal = { fg = "#191724"; bg = "#ebbcba"; bold = true; };
+        mode_select = { fg = "#191724"; bg = "#9ccfd8"; bold = true; };
+        mode_unset = { fg = "#191724"; bg = "#eb6f92"; bold = true; };
+        progress_label = { fg = "#e0def4"; bold = true; };
+        progress_normal = { fg = "#191724"; bg = "#26233a"; };
+        progress_error = { fg = "#eb6f92"; bg = "#26233a"; };
+        permissions_t = { fg = "#31748f"; };
+        permissions_r = { fg = "#f6c177"; };
+        permissions_w = { fg = "#eb6f92"; };
+        permissions_x = { fg = "#9ccfd8"; };
+        permissions_s = { fg = "#524f67"; };
+      };
+      input = {
+        border = { fg = "#524f67"; };
+        title = {};
+        value = {};
+        selected = { reversed = true; };
+      };
+      select = {
+        border = { fg = "#524f67"; };
+        active = { fg = "#eb6f92"; };
+        inactive = {};
+      };
+      tasks = {
+        border = { fg = "#524f67"; };
+        title = {};
+        hovered = { underline = true; };
+      };
+      which = {
+        mask = { bg = "#26233a"; };
+        cand = { fg = "#9ccfd8"; };
+        rest = { fg = "#908caa"; };
+        desc = { fg = "#eb6f92"; };
+        separator = "  ";
+        separator_style = { fg = "#524f67"; };
+      };
+      help = {
+        on = { fg = "#eb6f92"; };
+        exec = { fg = "#9ccfd8"; };
+        desc = { fg = "#908caa"; };
+        hovered = { bg = "#524f67"; bold = true; };
+        footer = { fg = "#26233a"; bg = "#e0def4"; };
+      };
+      filetype = {
+        rules = [
+          { mime = "image/*"; fg = "#9ccfd8"; }
+          { mime = "video/*"; fg = "#f6c177"; }
+          { mime = "audio/*"; fg = "#f6c177"; }
+          { mime = "application/zip"; fg = "#eb6f92"; }
+          { mime = "application/gzip"; fg = "#eb6f92"; }
+          { mime = "application/x-tar"; fg = "#eb6f92"; }
+          { mime = "application/x-bzip"; fg = "#eb6f92"; }
+          { mime = "application/x-bzip2"; fg = "#eb6f92"; }
+          { mime = "application/x-7z-compressed"; fg = "#eb6f92"; }
+          { mime = "application/x-rar"; fg = "#eb6f92"; }
+          { name = "*"; fg = "#e0def4"; }
+          { name = "*/"; fg = "#c4a7e7"; }
+        ];
       };
     };
   };
