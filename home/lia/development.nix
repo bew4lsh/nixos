@@ -66,8 +66,8 @@
     mongosh      # MongoDB shell
     redis        # Redis CLI
     duckdb       # Analytical database
+    usql         # Universal database CLI (supports SQL Server, Postgres, MySQL, etc.)
     # clickhouse  # Uncomment if needed - large package
-    # mssql-tools  # Not in nixpkgs - use Azure Data Studio or DBeaver instead
 
     # Database GUI
     dbeaver-bin
