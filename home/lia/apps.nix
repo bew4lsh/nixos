@@ -113,7 +113,7 @@ in
     # Communication - prefer vesktop for Wayland + Vencord
     vesktop
     signal-desktop
-    whatsapp-for-linux  # GTK wrapper for WhatsApp Web
+    wasistlos  # WhatsApp for Linux (formerly whatsapp-for-linux)
 
     # Notes
     obsidian
