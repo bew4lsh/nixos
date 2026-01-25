@@ -112,6 +112,8 @@ in
   home.packages = with pkgs; [
     # Communication - prefer vesktop for Wayland + Vencord
     vesktop
+    signal-desktop
+    wasistlos  # WhatsApp for Linux (formerly whatsapp-for-linux)
 
     # Notes
     obsidian
