@@ -32,6 +32,11 @@
   environment.systemPackages = with pkgs; [
     pavucontrol
     pwvucontrol
-    helvum
+    qpwgraph      # PipeWire patchbay
+
+    # Webcam tools
+    v4l-utils     # Camera controls CLI
+    cameractrls   # Camera controls GUI
+    cheese        # Quick webcam test
   ];
 }
