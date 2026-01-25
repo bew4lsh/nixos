@@ -291,8 +291,4 @@ in
     </svg>
   '';
 
-  # Update Qt platform theme to use Kvantum
-  home.sessionVariables = {
-    QT_STYLE_OVERRIDE = "kvantum";
-  };
 }
