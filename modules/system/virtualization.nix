@@ -9,19 +9,8 @@
       package = pkgs.qemu_kvm;
       runAsRoot = true;
 
-      # Enable UEFI boot for VMs
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
-
       # Enable TPM emulation (for Windows 11)
       swtpm.enable = true;
-
-      # VirtIO drivers for Windows
-      verbatimConfig = ''
-        nvram = [ "${pkgs.OVMFFull}/FV/OVMF.fd:${pkgs.OVMFFull}/FV/OVMF_VARS.fd" ]
-      '';
     };
   };
 
@@ -41,7 +30,7 @@
     virt-manager
     virt-viewer
     spice-gtk
-    win-virtio  # VirtIO drivers ISO for Windows
+    virtio-win  # VirtIO drivers ISO for Windows
     swtpm       # TPM emulator
 
     # Looking Glass client

@@ -59,12 +59,12 @@
     packages = with pkgs; [
       # Main fonts
       inter
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.jetbrains-mono
 
       # Fallback fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       dejavu_fonts
     ];

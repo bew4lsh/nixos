@@ -51,6 +51,14 @@
       cat = "bat";
       find = "fd";
       grep = "rg";
+      lg = "lazygit";
+
+      # Quick commands
+      c = "clear";
+      h = "history";
+      ports = "ss -tulanp";
+      meminfo = "free -h";
+      cpuinfo = "lscpu";
 
       # Quick access
       nixconf = "cd /home/lia/nixos && nvim";
@@ -78,11 +86,76 @@
       export LESS_TERMCAP_so=$'\e[01;33m'
       export LESS_TERMCAP_ue=$'\e[0m'
       export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+      # Useful functions
+
+      # Create directory and cd into it
+      mkcd() { mkdir -p "$1" && cd "$1"; }
+
+      # Extract any archive
+      extract() {
+        if [ -f "$1" ]; then
+          case "$1" in
+            *.tar.bz2) tar xjf "$1" ;;
+            *.tar.gz)  tar xzf "$1" ;;
+            *.tar.xz)  tar xJf "$1" ;;
+            *.bz2)     bunzip2 "$1" ;;
+            *.rar)     unrar x "$1" ;;
+            *.gz)      gunzip "$1" ;;
+            *.tar)     tar xf "$1" ;;
+            *.tbz2)    tar xjf "$1" ;;
+            *.tgz)     tar xzf "$1" ;;
+            *.zip)     unzip "$1" ;;
+            *.Z)       uncompress "$1" ;;
+            *.7z)      7z x "$1" ;;
+            *)         echo "'$1' cannot be extracted via extract()" ;;
+          esac
+        else
+          echo "'$1' is not a valid file"
+        fi
+      }
+
+      # Interactive ripgrep with fzf
+      rgi() {
+        local RG_PREFIX="rg --line-number --no-heading --color=always --smart-case"
+        local result
+        result=$(
+          FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+          fzf --ansi \
+              --disabled \
+              --query "$1" \
+              --bind "change:reload:$RG_PREFIX {q} || true" \
+              --bind "ctrl-u:preview-page-up" \
+              --bind "ctrl-d:preview-page-down" \
+              --preview "bat --color=always {1} --highlight-line {2}" \
+              --preview-window "+{2}/2" \
+              --delimiter ":"
+        )
+        if [ -n "$result" ]; then
+          local file=$(echo "$result" | cut -d: -f1)
+          local line=$(echo "$result" | cut -d: -f2)
+          ''${EDITOR:-nvim} "+$line" "$file"
+        fi
+      }
+
+      # Load API keys from sops secrets if available
+      if [ -f /run/secrets/anthropic-api-key ]; then
+        export ANTHROPIC_API_KEY=$(cat /run/secrets/anthropic-api-key)
+      fi
+      if [ -f /run/secrets/openai-api-key ]; then
+        export OPENAI_API_KEY=$(cat /run/secrets/openai-api-key)
+      fi
+      if [ -f /run/secrets/tavily-api-key ]; then
+        export TAVILY_API_KEY=$(cat /run/secrets/tavily-api-key)
+      fi
     '';
 
     initExtra = ''
       # Start starship prompt
       eval "$(starship init bash)"
+
+      # Fnm (Fast Node Manager)
+      eval "$(fnm env --use-on-cd --version-file-strategy local --corepack-enabled)"
 
       # Start zellij if not already in a session (optional, uncomment if desired)
       # if [[ -z "$ZELLIJ" && -z "$INSIDE_EMACS" && -z "$VSCODE_INJECTION" ]]; then

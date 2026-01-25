@@ -1,0 +1,24 @@
+# Secrets - the encrypted secrets.yaml IS safe to commit
+# Keep plaintext backups and decrypted files out
+secrets/*.bak
+secrets/*.plain
+secrets/*.dec
+
+# Nix build results
+result
+result-*
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local notes (not Note.md which we created)
+TODO.local
+notes.local

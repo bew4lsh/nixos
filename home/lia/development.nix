@@ -17,14 +17,14 @@
     zls  # Zig language server
 
     # Node.js (using fnm for version management)
+    fnm
     nodejs_22
     nodePackages.npm
     nodePackages.pnpm
     nodePackages.yarn
-    # For version management, fnm is configured below
 
     # Python (base is in packages.nix, extras here)
-    python3Packages.poetry
+    poetry
     python3Packages.pytest
     python3Packages.mypy
     ruff
@@ -99,16 +99,6 @@
     entr  # Run commands on file change
     act   # Run GitHub Actions locally
   ];
-
-  # Fnm - Fast Node Manager
-  programs.fnm = {
-    enable = true;
-    settings = {
-      use-on-cd = true;
-      version-file-strategy = "local";
-      corepack-enabled = true;
-    };
-  };
 
   # Direnv for per-project environments
   programs.direnv = {

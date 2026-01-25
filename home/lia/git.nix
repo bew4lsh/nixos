@@ -6,7 +6,7 @@
 
     # User info - update with your details
     userName = "lia";
-    userEmail = "lia@example.com";  # TODO: Update this
+    userEmail = "bew4lsh@gmail.com";
 
     # Signing
     signing = {

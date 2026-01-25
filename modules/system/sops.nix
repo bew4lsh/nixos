@@ -22,15 +22,29 @@
       # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
 
-    # Example secrets - uncomment and add to secrets.yaml
+    # Secrets defined here will be decrypted to /run/secrets/<name>
     secrets = {
+      # API Keys - accessible by user lia
+      "anthropic-api-key" = {
+        owner = "lia";
+        mode = "0400";
+      };
+      "openai-api-key" = {
+        owner = "lia";
+        mode = "0400";
+      };
+      "tavily-api-key" = {
+        owner = "lia";
+        mode = "0400";
+      };
+
+      # Other secrets (uncomment as needed)
       # "tailscale-auth-key" = {
       #   owner = "root";
       # };
       # "user-password" = {
       #   neededForUsers = true;
       # };
-      # "wifi-password" = { };
     };
   };
 

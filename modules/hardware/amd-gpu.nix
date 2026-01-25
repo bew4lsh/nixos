@@ -17,16 +17,10 @@
 
       # VA-API for hardware video acceleration
       libvdpau-va-gl
-      vaapiVdpau
+      libva-vdpau-driver
 
       # AMD specific
-      amdvlk
       rocmPackages.clr.icd  # OpenCL
-    ];
-
-    extraPackages32 = with pkgs.driversi686Linux; [
-      vulkan-loader
-      amdvlk
     ];
   };
 
@@ -47,7 +41,7 @@
     libva-utils      # vainfo
     vdpauinfo
     vulkan-tools     # vulkaninfo
-    glxinfo
+    mesa-demos       # glxinfo
     clinfo
     radeontop        # GPU monitoring
   ];
