@@ -19,7 +19,7 @@ jobs:
             experimental-features = nix-command flakes
 
       - name: Check flake
-        run: nix flake check --override-input nvim-config path:.
+        run: nix flake check
 
       - name: Validate configuration (dry-run)
-        run: nix build .#nixosConfigurations.adrasteia.config.system.build.toplevel --dry-run --override-input nvim-config path:.
+        run: nix build .#nixosConfigurations.adrasteia.config.system.build.toplevel --dry-run
