@@ -1,14 +1,15 @@
-# Disko configuration for btrfs with snapshots
-# Designed for dual-boot with Windows 11
+# Disko configuration for LUKS-encrypted btrfs with snapshots
+# Designed for dual-boot with Windows 11 (on separate disk)
 #
 # USAGE:
 # 1. Boot NixOS installer
 # 2. Identify your target disk: lsblk
 # 3. Run: sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disk-config.nix --arg device '"/dev/nvme0n1"'
 #    Replace /dev/nvme0n1 with your actual disk
+# 4. You'll be prompted to enter a LUKS passphrase
 #
-# NOTE: This assumes Windows is on a SEPARATE disk. If Windows is on the same disk,
-# you'll need to manually partition and skip disko, or modify this config.
+# NOTE: This assumes Windows is on a SEPARATE disk. Windows is not affected.
+# The NixOS disk is fully encrypted; Windows disk remains untouched.
 
 { device ? "/dev/nvme0n1", ... }:
 
@@ -34,28 +35,38 @@
             root = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # Force overwrite
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "@log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = [ "compress=zstd" "noatime" ];
-                  };
-                  "@snapshots" = {
-                    mountpoint = "/.snapshots";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                type = "luks";
+                name = "cryptroot";
+                settings = {
+                  allowDiscards = true;  # Enable TRIM on encrypted SSD
+                  bypassWorkqueues = true;  # Better SSD performance
+                };
+                # Interactive password prompt during install
+                # For automated install, use: passwordFile = "/tmp/secret.key";
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ]; # Force overwrite
+                  subvolumes = {
+                    "@" = {
+                      mountpoint = "/";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "@log" = {
+                      mountpoint = "/var/log";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+                    "@snapshots" = {
+                      mountpoint = "/.snapshots";
+                      mountOptions = [ "compress=zstd" "noatime" ];
+                    };
                   };
                 };
               };
