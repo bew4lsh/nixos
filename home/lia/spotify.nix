@@ -13,9 +13,9 @@ in
   programs.spicetify = {
     enable = true;
 
-    # Rosé Pine theme
-    theme = spicePkgs.themes.rosePine;
-    colorScheme = "rosePine";
+    # Catppuccin theme (closest to Rosé Pine aesthetic)
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
 
     # Extensions
     enabledExtensions = with spicePkgs.extensions; [
