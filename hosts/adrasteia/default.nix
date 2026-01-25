@@ -18,6 +18,7 @@
     ../../modules/system/plymouth.nix
     ../../modules/system/virtualization.nix
     ../../modules/system/containers.nix
+    ../../modules/system/maintenance.nix
 
     # Hardware
     ../../modules/hardware/amd-cpu.nix
