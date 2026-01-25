@@ -67,7 +67,7 @@
     redis        # Redis CLI
     duckdb       # Analytical database
     # clickhouse  # Uncomment if needed - large package
-    mssql-tools  # SQL Server tools
+    # mssql-tools  # Not in nixpkgs - use Azure Data Studio or DBeaver instead
 
     # Database GUI
     dbeaver-bin
