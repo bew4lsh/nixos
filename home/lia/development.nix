@@ -74,7 +74,7 @@
 
     # Data tools
     visidata     # TUI spreadsheet/data viewer
-    xsv          # CSV toolkit
+    csvlens      # CSV viewer TUI
     miller       # CSV/JSON/etc processor
 
     # API tools
