@@ -70,9 +70,18 @@ lsblk
 
 echo ""
 warn "Disko will ERASE the target disk!"
-read -p "Continue? (yes/no): " CONFIRM
-if [[ "$CONFIRM" != "yes" ]]; then
-    error "Aborted by user"
+
+# Check if running interactively
+if [[ -t 0 ]]; then
+    read -p "Continue? (yes/no): " CONFIRM
+    if [[ "$CONFIRM" != "yes" ]]; then
+        error "Aborted by user"
+    fi
+else
+    warn "Non-interactive mode - add --yes flag to confirm"
+    if [[ "${2:-}" != "--yes" ]]; then
+        error "Aborted. Run with: ./install.sh $HOSTNAME --yes"
+    fi
 fi
 
 # Run disko
