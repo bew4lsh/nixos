@@ -54,12 +54,6 @@
 
     # Hardware-specific configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-
-    # Apple T2 chip support
-    apple-silicon = {
-      url = "github:t2linux/nixos-t2-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, niri, ... }@inputs:
