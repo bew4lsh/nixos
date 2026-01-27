@@ -4,7 +4,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    # ./disk-config.nix  # Add if using disko
+    ./disk-config.nix
 
     # System services
     ../../modules/system/boot.nix
