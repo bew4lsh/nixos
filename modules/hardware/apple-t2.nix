@@ -3,9 +3,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  # T2 Linux kernel with Apple hardware patches
+  # T2 Macs need latest kernel (set in boot.nix)
   # This provides drivers for keyboard, trackpad, Touch Bar, audio
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Apple BCE (keyboard/trackpad) and audio modules
   boot.kernelModules = [
