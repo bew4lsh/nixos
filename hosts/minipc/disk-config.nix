@@ -5,13 +5,11 @@
 # sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
 #   --mode disko --flake .#minipc
 
-{ device ? "/dev/sda", ... }:
-
 {
   disko.devices = {
     disk = {
       main = {
-        inherit device;
+        device = "/dev/sda";  # Adjust for your hardware
         type = "disk";
         content = {
           type = "gpt";

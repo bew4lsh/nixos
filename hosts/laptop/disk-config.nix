@@ -22,13 +22,11 @@
 # - This will ERASE the entire disk
 # - Make sure you have backups
 
-{ device ? "/dev/nvme0n1", ... }:
-
 {
   disko.devices = {
     disk = {
       main = {
-        inherit device;
+        device = "/dev/nvme0n1";  # MacBook T2 SSD
         type = "disk";
         content = {
           type = "gpt";

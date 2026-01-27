@@ -1,34 +1,22 @@
 # Disko configuration for VirtualBox VM
 # Simple ext4 layout, no encryption (it's a test VM)
+# Device hardcoded to /dev/sda (standard for VirtualBox)
 #
 # USAGE:
-# 1. Create a new VirtualBox VM:
-#    - Type: Linux, Version: Other Linux (64-bit)
-#    - Enable EFI: Settings > System > Enable EFI
-#    - Create a VDI disk (32GB+ recommended)
-#    - Attach NixOS ISO to optical drive
-#
-# 2. Boot the VM from ISO
-#
-# 3. Identify the disk (usually /dev/sda for VirtualBox):
-#    lsblk
-#
+# 1. Create VirtualBox VM with EFI enabled
+# 2. Boot from NixOS ISO
+# 3. Clone config: git clone https://github.com/YOUR/nixos /tmp/nixos && cd /tmp/nixos
 # 4. Run disko:
 #    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
-#      --mode disko ./hosts/virtualbox/disk-config.nix --arg device '"/dev/sda"'
-#
-# 5. Install NixOS:
-#    sudo nixos-install --flake .#virtualbox
-#
+#      --mode disko --flake .#virtualbox
+# 5. Install: sudo nixos-install --flake .#virtualbox
 # 6. Remove ISO and reboot
-
-{ device ? "/dev/sda", ... }:
 
 {
   disko.devices = {
     disk = {
       main = {
-        inherit device;
+        device = "/dev/sda";
         type = "disk";
         content = {
           type = "gpt";
