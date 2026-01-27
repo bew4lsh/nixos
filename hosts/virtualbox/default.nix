@@ -48,8 +48,8 @@
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Disable services not needed in VM
-  services.fstrim.enable = false;
-  powerManagement.enable = false;
+  services.fstrim.enable = lib.mkForce false;
+  powerManagement.enable = lib.mkForce false;
 
   # VM display - let VirtualBox handle resolution
   # Niri will adapt to the window size
