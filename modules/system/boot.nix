@@ -12,20 +12,12 @@
     timeout = 3;
   };
 
-  # Use latest kernel for best AMD RDNA 4 support
+  # Use latest kernel (good hardware support)
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Kernel parameters
+  # Common kernel parameters
   boot.kernelParams = [
-    # AMD specific
-    "amd_pstate=active"     # AMD P-State driver for Zen 4/5
-    "iommu=pt"              # IOMMU passthrough mode
-
-    # Performance
-    "mitigations=off"       # Disable CPU mitigations for performance (gaming)
-                            # Remove if you prefer security over performance
-
-    # Quiet boot (optional, remove for debugging)
+    # Quiet boot (remove for debugging)
     "quiet"
     "splash"
     "loglevel=3"
@@ -35,10 +27,4 @@
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
   };
-
-  # Plymouth for boot splash (optional, matches Rosé Pine)
-  # boot.plymouth = {
-  #   enable = true;
-  #   theme = "breeze";
-  # };
 }

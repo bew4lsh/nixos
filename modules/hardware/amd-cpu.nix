@@ -4,8 +4,15 @@
   # AMD CPU microcode
   hardware.cpu.amd.updateMicrocode = true;
 
-  # AMD P-State driver (enabled via kernel params in boot.nix)
-  # This provides better power/performance scaling for Zen 4/5
+  # AMD-specific kernel parameters
+  boot.kernelParams = [
+    "amd_pstate=active"     # AMD P-State driver for Zen 4/5
+    "iommu=pt"              # IOMMU passthrough mode
+
+    # Performance (gaming desktop)
+    "mitigations=off"       # Disable CPU mitigations for performance
+                            # Remove if you prefer security over performance
+  ];
 
   # Thermal management
   services.thermald.enable = false;  # Intel only
@@ -15,9 +22,4 @@
     enable = true;
     cpuFreqGovernor = "performance";  # Gaming system, always performance
   };
-
-  # For laptops, you might want:
-  # services.power-profiles-daemon.enable = true;
-  # Or for more control:
-  # services.tlp.enable = true;
 }

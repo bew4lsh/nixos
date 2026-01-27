@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration for adrasteia";
+  description = "NixOS configurations";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -51,35 +51,67 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Hardware-specific configurations
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    # Apple T2 chip support
+    apple-silicon = {
+      url = "github:t2linux/nixos-t2-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, niri, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      # Helper function to create a NixOS configuration
+      mkHost = { hostname, system ? "x86_64-linux", extraModules ? [], homeModules ? [] }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            # Flake-provided modules
+            disko.nixosModules.disko
+            niri.nixosModules.niri
+            home-manager.nixosModules.home-manager
+
+            # Common configuration
+            ./modules/common
+
+            # Host-specific configuration
+            ./hosts/${hostname}
+
+            # Home-manager setup
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.lia = import ./home/lia;
+            }
+          ] ++ extraModules;
+        };
     in
     {
-      nixosConfigurations.adrasteia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          disko.nixosModules.disko
-          niri.nixosModules.niri
-          home-manager.nixosModules.home-manager
-          ./hosts/adrasteia
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.lia = import ./home/lia;
-          }
-        ];
-      };
+      nixosConfigurations = {
+        # Desktop (main workstation) - formerly adrasteia
+        adrasteia = mkHost {
+          hostname = "adrasteia";
+        };
 
-      # For convenience: nixos-rebuild switch --flake .#adrasteia
-      # Or just: nixos-rebuild switch --flake .
+        # Laptop configuration
+        laptop = mkHost {
+          hostname = "laptop";
+        };
+
+        # VirtualBox VM for testing
+        virtualbox = mkHost {
+          hostname = "virtualbox";
+        };
+
+        # Mini PC / home server
+        minipc = mkHost {
+          hostname = "minipc";
+        };
+      };
     };
 }

@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-# Apply configuration changes
-sudo nixos-rebuild switch --flake ~/nixos#adrasteia
+# Apply configuration changes (replace HOSTNAME with: adrasteia, laptop, virtualbox, minipc)
+sudo nixos-rebuild switch --flake ~/nixos#HOSTNAME
 
 # Update flake inputs
 nix flake update ~/nixos
@@ -17,7 +17,7 @@ sudo nix-collect-garbage -d
 # List system generations
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 
-# Initial install with disko (replace device)
+# Initial install with disko (replace device and host)
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
   --mode disko ./hosts/adrasteia/disk-config.nix --arg device '"/dev/nvme0n1"'
 ```
@@ -26,22 +26,34 @@ Shell aliases defined in `home/lia/shell.nix`: `rebuild`, `update`, `garbage`, `
 
 ## Architecture
 
-This is a NixOS flake configuration for a single host `adrasteia` with home-manager integration.
+This is a multi-host NixOS flake configuration with home-manager integration.
+
+### Hosts
+
+| Host | Description |
+|------|-------------|
+| `adrasteia` | Desktop workstation (AMD Ryzen 9 9950X3D + RX 9070 XT) |
+| `laptop` | Laptop configuration |
+| `virtualbox` | VirtualBox VM for testing |
+| `minipc` | Mini PC / home server (headless) |
 
 ### Import Flow
 
 ```
-flake.nix
-├── hosts/adrasteia/default.nix    # Host entry point
-│   ├── hardware-configuration.nix  # Kernel modules (auto-generated)
-│   ├── disk-config.nix             # Disko btrfs partitioning
-│   └── modules/*                   # All system modules
+flake.nix (mkHost helper)
+├── modules/common/default.nix     # Shared config (nix settings, core packages)
+├── hosts/<hostname>/
+│   ├── default.nix                # Host-specific modules
+│   ├── hardware-configuration.nix # Kernel modules (nixos-generate-config)
+│   └── disk-config.nix            # Optional: disko partitioning
 └── home-manager
-    └── home/lia/default.nix        # User config entry point
-        └── home/lia/*.nix          # All user modules
+    └── home/lia/default.nix       # User config (shared across hosts)
 ```
 
 ### Module Organization
+
+- **Common** (`modules/common/`): Shared across all hosts
+  - Nix settings, garbage collection, core packages
 
 - **System modules** (`modules/`): Use NixOS options (`services.*`, `boot.*`, `programs.*`)
   - `hardware/`: AMD CPU/GPU drivers, microcode, power management
@@ -56,10 +68,11 @@ flake.nix
 
 ### Key Patterns
 
+- **mkHost helper**: DRY host definitions in flake.nix
 - **Inputs passed via specialArgs**: Access flake inputs in modules with `{ inputs, ... }:`
 - **External Neovim config**: Pulled from `github:bew4lsh/nvim` (non-flake input)
 - **Btrfs subvolumes**: `@`, `@home`, `@nix`, `@log`, `@snapshots` with zstd compression
-- **Rosé Pine theming**: Colors defined separately in each relevant file (niri, waybar, fuzzel, mako, wezterm, shell)
+- **Rosé Pine theming**: Colors defined separately in each relevant file
 
 ### Optional Modules (commented out)
 
@@ -67,8 +80,9 @@ flake.nix
 - `lanzaboote.nix`: Secure Boot support
 - `impermanence.nix`: Ephemeral root filesystem
 
-## Hardware
+## Adding a New Host
 
-- AMD Ryzen 9 9950X3D + RX 9070 XT (RDNA 4)
-- Uses `linuxPackages_latest` for RDNA 4 support
-- Triple monitor setup configured in `home/lia/niri.nix`
+1. Create `hosts/<hostname>/default.nix` with host-specific imports
+2. Generate hardware config on target: `nixos-generate-config --show-hardware-config`
+3. Add entry to `nixosConfigurations` in `flake.nix`
+4. Build with: `sudo nixos-rebuild switch --flake ~/nixos#<hostname>`
