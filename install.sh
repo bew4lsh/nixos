@@ -71,17 +71,16 @@ lsblk
 echo ""
 warn "Disko will ERASE the target disk!"
 
-# Check if running interactively
-if [[ -t 0 ]]; then
+# Skip confirmation if --yes flag is passed
+if [[ "${2:-}" == "--yes" || "${2:-}" == "-y" ]]; then
+    info "Skipping confirmation (--yes flag)"
+elif [[ -t 0 ]]; then
     read -p "Continue? (yes/no): " CONFIRM
     if [[ "$CONFIRM" != "yes" ]]; then
         error "Aborted by user"
     fi
 else
-    warn "Non-interactive mode - add --yes flag to confirm"
-    if [[ "${2:-}" != "--yes" ]]; then
-        error "Aborted. Run with: ./install.sh $HOSTNAME --yes"
-    fi
+    error "Non-interactive mode requires --yes flag: ./install.sh $HOSTNAME --yes"
 fi
 
 # Run disko
@@ -94,8 +93,19 @@ nixos-install --flake ".#$HOSTNAME" --no-root-passwd
 
 info "Installation complete!"
 echo ""
-echo "Next steps:"
-echo "  1. Remove the ISO/USB"
-echo "  2. Reboot"
-echo "  3. Login as 'lia' (password: 'nixos' for virtualbox, or set during install)"
+echo "Login after reboot:"
+echo "  User: lia"
+echo "  Password: nixos (for virtualbox) - change after login!"
 echo ""
+
+# Offer to reboot
+if [[ -t 0 ]]; then
+    read -p "Reboot now? (y/n): " REBOOT
+    if [[ "$REBOOT" == "y" || "$REBOOT" == "yes" ]]; then
+        warn "Remove the ISO/USB before the system restarts!"
+        sleep 3
+        reboot
+    fi
+else
+    echo "Run 'reboot' when ready (remove ISO first)"
+fi
