@@ -104,7 +104,6 @@ in
     }
 
     // Spawn at startup
-    spawn-at-startup "waybar"
     spawn-at-startup "mako"
     spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
     spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
