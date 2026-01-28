@@ -38,7 +38,7 @@
       gd = "git diff";
 
       # NixOS
-      rebuild = "sudo nixos-rebuild switch --flake /home/lia/nixos#adrasteia";
+      rebuild = "sudo nixos-rebuild switch --flake /home/lia/nixos#$(hostname)";
       update = "nix flake update /home/lia/nixos";
       garbage = "sudo nix-collect-garbage -d";
       generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
