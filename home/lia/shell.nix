@@ -68,15 +68,13 @@
       # Enable vi mode (optional, uncomment if you want)
       # set -o vi
 
-      # Better history search with up/down arrows
-      bind '"\e[A": history-search-backward'
-      bind '"\e[B": history-search-forward'
-
-      # Case-insensitive completion
-      bind 'set completion-ignore-case on'
-
-      # Show all completions on first tab
-      bind 'set show-all-if-ambiguous on'
+      # Better history search with up/down arrows (only in interactive shells)
+      if [[ $- == *i* ]]; then
+        bind '"\e[A": history-search-backward'
+        bind '"\e[B": history-search-forward'
+        bind 'set completion-ignore-case on'
+        bind 'set show-all-if-ambiguous on'
+      fi
 
       # Color man pages
       export LESS_TERMCAP_mb=$'\e[1;32m'

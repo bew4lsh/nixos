@@ -128,6 +128,7 @@
     CLUTTER_BACKEND = "wayland";
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "niri";
+    GTK_THEME = "rose-pine";  # Ensure GTK theme is applied
   };
 
   # Enable dconf for GTK settings
