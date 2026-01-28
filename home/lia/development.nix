@@ -18,10 +18,9 @@
 
     # Node.js (using fnm for version management)
     fnm
-    nodejs_22
-    nodePackages.npm
-    nodePackages.pnpm
-    nodePackages.yarn
+    nodejs_22  # Includes npm
+    pnpm
+    yarn
 
     # Python (base is in packages.nix, extras here)
     poetry
