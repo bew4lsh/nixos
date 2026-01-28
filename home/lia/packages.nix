@@ -12,7 +12,6 @@
     gcc
     gnumake
     cmake
-    clang
 
     # Development - General
     git

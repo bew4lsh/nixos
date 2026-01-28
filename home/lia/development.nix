@@ -41,12 +41,8 @@
     python3Packages.notebook
     python3Packages.ipywidgets
 
-    # C/C++
-    gcc
-    clang
-    clang-tools  # clangd, clang-format
-    cmake
-    gnumake
+    # C/C++ (gcc in packages.nix, clang-tools for LSP/formatting)
+    clang-tools  # clangd, clang-format (no /bin/c++ conflict)
     ninja
     gdb
     lldb
