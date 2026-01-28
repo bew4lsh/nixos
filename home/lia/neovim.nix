@@ -28,7 +28,7 @@
       # Treesitter compilers
       gcc
       gnumake
-      nodejs
+      nodejs_22  # Match version in development.nix
 
       # Tools your config might need
       ripgrep
