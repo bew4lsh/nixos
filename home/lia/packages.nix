@@ -33,7 +33,6 @@
     yq-go
     tokei  # Code statistics
     hyperfine  # Benchmarking
-    tldr  # Simplified man pages
     trash-cli
     duf  # Disk usage
     ncdu  # NCurses disk usage

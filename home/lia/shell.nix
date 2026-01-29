@@ -409,4 +409,61 @@
     enableBashIntegration = true;
     nix-direnv.enable = true;
   };
+
+  # Atuin - better shell history with sync support
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    settings = {
+      style = "compact";
+      inline_height = 10;
+      show_preview = true;
+      # Don't override up arrow (keep default bash behavior)
+      # Use Ctrl+R for atuin search instead
+      keymap_mode = "vim-normal";
+    };
+  };
+
+  # Tealdeer - fast tldr pages
+  programs.tealdeer = {
+    enable = true;
+    settings = {
+      updates = {
+        auto_update = true;
+      };
+    };
+  };
+
+  # Pay-respects - correct previous commands (type 'f' to fix)
+  programs.pay-respects = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Navi - interactive cheatsheets
+  programs.navi = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Broot - interactive tree navigator
+  programs.broot = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Carapace - multi-shell completion generator
+  programs.carapace = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Nix-index - command-not-found with nix package suggestions
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # Generate man page caches for faster lookups
+  programs.man.generateCaches = true;
 }
