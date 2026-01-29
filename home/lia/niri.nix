@@ -304,7 +304,7 @@ in
         Mod+V { spawn "sh" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
         // Emoji picker
-        Mod+Period { spawn "bemoji" "-t"; }
+        Mod+Semicolon { spawn "bemoji" "-t"; }
 
         // Color picker (copies hex to clipboard)
         Mod+Shift+C { spawn "sh" "-c" "hyprpicker -a"; }
