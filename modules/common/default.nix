@@ -40,6 +40,7 @@
     jq
     htop
     btop
+    mission-center
 
     # Nix tools
     nh
