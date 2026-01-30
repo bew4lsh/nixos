@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  # Disabled - Noctalia has built-in notification handling
+  # Re-enable if you want to use mako instead of Noctalia's notifications
   services.mako = {
-    enable = true;
+    enable = false;
     settings = {
       # General
       font = "Inter 11";
