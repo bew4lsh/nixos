@@ -52,6 +52,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Noctalia shell (quickshell-based status bar)
+    noctalia = {
+      url = "github:Ly-sec/Noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hardware-specific configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
@@ -80,7 +86,12 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs hostname; };
-              home-manager.users.lia = import ./home/lia;
+              home-manager.users.lia = {
+                imports = [
+                  ./home/lia
+                  inputs.noctalia.homeModules.default
+                ];
+              };
             }
           ] ++ extraModules;
         };
