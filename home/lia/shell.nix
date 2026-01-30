@@ -47,18 +47,31 @@
       v = "nvim";
       vim = "nvim";
 
+      # Claude
+      badclaude = "claude --dangerously-skip-permissions";
+
       # Tools
       cat = "bat";
       find = "fd";
       grep = "rg";
       lg = "lazygit";
 
+      # WezTerm
+      tabname = "wezterm cli set-tab-title";
+      tn = "wezterm cli set-tab-title";
+
       # Quick commands
       c = "clear";
+      cls = "clear";
       h = "history";
+      y = "yazi";
+      q = "exit";
       ports = "ss -tulanp";
       meminfo = "free -h";
       cpuinfo = "lscpu";
+      df = "df -h";
+      du = "du -h";
+      mkdir = "mkdir -pv";
 
       # Quick access
       nixconf = "cd /home/lia/nixos && nvim";
@@ -192,11 +205,11 @@
         truncation_length = 3;
         truncation_symbol = "…/";
         substitutions = {
-          Documents = "󰈙 ";
-          Downloads = " ";
-          Music = " ";
-          Pictures = " ";
-          nixos = " ";
+          Documents = "󰈙 Documents";
+          Downloads = " Downloads";
+          Music = " Music";
+          Pictures = " Pictures";
+          nixos = " nixos";
         };
       };
 
