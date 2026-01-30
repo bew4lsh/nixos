@@ -4,95 +4,75 @@
   programs.git = {
     enable = true;
 
-    # User info - update with your details
-    userName = "lia";
-    userEmail = "bew4lsh@gmail.com";
-
     # Signing
     signing = {
       signByDefault = true;
       key = null;  # Uses default GPG key, or set specific key ID
     };
 
-    # Delta for better diffs
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = false;
-        line-numbers = true;
-        syntax-theme = "base16";
-
-        # Rosé Pine inspired colors
-        minus-style = "syntax #3d2a3a";
-        minus-emph-style = "syntax #5e3d50";
-        plus-style = "syntax #2a3d3e";
-        plus-emph-style = "syntax #3d5e5f";
-        line-numbers-minus-style = "#eb6f92";
-        line-numbers-plus-style = "#31748f";
-        line-numbers-zero-style = "#6e6a86";
+    # Settings (replaces userName, userEmail, aliases, extraConfig)
+    settings = {
+      user = {
+        name = "lia";
+        email = "bew4lsh@gmail.com";
       };
-    };
 
-    # Aliases
-    aliases = {
-      a = "add";
-      aa = "add --all";
-      ap = "add --patch";
+      alias = {
+        a = "add";
+        aa = "add --all";
+        ap = "add --patch";
 
-      b = "branch";
-      ba = "branch --all";
-      bd = "branch --delete";
+        b = "branch";
+        ba = "branch --all";
+        bd = "branch --delete";
 
-      c = "commit";
-      ca = "commit --amend";
-      cm = "commit --message";
+        c = "commit";
+        ca = "commit --amend";
+        cm = "commit --message";
 
-      co = "checkout";
-      cob = "checkout -b";
+        co = "checkout";
+        cob = "checkout -b";
 
-      d = "diff";
-      ds = "diff --staged";
+        d = "diff";
+        ds = "diff --staged";
 
-      f = "fetch --all --prune";
+        f = "fetch --all --prune";
 
-      l = "log --oneline -20";
-      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      ll = "log --oneline";
+        l = "log --oneline -20";
+        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        ll = "log --oneline";
 
-      p = "push";
-      pf = "push --force-with-lease";
-      pu = "push -u origin HEAD";
+        p = "push";
+        pf = "push --force-with-lease";
+        pu = "push -u origin HEAD";
 
-      pl = "pull";
-      plr = "pull --rebase";
+        pl = "pull";
+        plr = "pull --rebase";
 
-      r = "rebase";
-      ri = "rebase --interactive";
-      rc = "rebase --continue";
-      ra = "rebase --abort";
+        r = "rebase";
+        ri = "rebase --interactive";
+        rc = "rebase --continue";
+        ra = "rebase --abort";
 
-      s = "status --short --branch";
-      st = "status";
+        s = "status --short --branch";
+        st = "status";
 
-      sw = "switch";
-      swc = "switch --create";
+        sw = "switch";
+        swc = "switch --create";
 
-      # Stash
-      ss = "stash";
-      sp = "stash pop";
-      sl = "stash list";
+        # Stash
+        ss = "stash";
+        sp = "stash pop";
+        sl = "stash list";
 
-      # Reset
-      unstage = "reset HEAD --";
-      undo = "reset --soft HEAD~1";
+        # Reset
+        unstage = "reset HEAD --";
+        undo = "reset --soft HEAD~1";
 
-      # Cleanup
-      cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d";
-    };
+        # Cleanup
+        cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d";
+      };
 
-    # Extra config
-    extraConfig = {
       init.defaultBranch = "main";
 
       core = {
@@ -174,6 +154,27 @@
       "result"
       "result-*"
     ];
+  };
+
+  # Delta for better diffs (moved from programs.git.delta)
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      side-by-side = false;
+      line-numbers = true;
+      syntax-theme = "base16";
+
+      # Rosé Pine inspired colors
+      minus-style = "syntax #3d2a3a";
+      minus-emph-style = "syntax #5e3d50";
+      plus-style = "syntax #2a3d3e";
+      plus-emph-style = "syntax #3d5e5f";
+      line-numbers-minus-style = "#eb6f92";
+      line-numbers-plus-style = "#31748f";
+      line-numbers-zero-style = "#6e6a86";
+    };
   };
 
   # GitHub CLI

@@ -20,7 +20,7 @@
   # VirtualBox guest additions
   virtualisation.virtualbox.guest = {
     enable = true;
-    draganddrop = true;
+    dragAndDrop = true;
     clipboard = true;
   };
 

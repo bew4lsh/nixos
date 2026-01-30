@@ -1,6 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, hostname, ... }:
 
 let
+  isVirtualBox = hostname == "virtualbox";
+
   # Rosé Pine colors
   colors = {
     base = "#191724";
@@ -107,6 +109,8 @@ in
     spawn-at-startup "mako"
     spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
     spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+    spawn-at-startup "xwayland-satellite"
+    ${if isVirtualBox then ''spawn-at-startup "sh" "-c" "swaybg -i \"$(find ~/Pictures/rose-pine-wallpapers/wallpapers -type f | shuf -n 1)\" -m fill"'' else ''spawn-at-startup "wpaperd"''}
 
     // Prefer no client-side decorations
     prefer-no-csd

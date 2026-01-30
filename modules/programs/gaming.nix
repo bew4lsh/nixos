@@ -66,9 +66,8 @@
     # Performance overlay
     mangohud
 
-    # Proton
+    # Proton manager GUI (proton-ge-bin is in extraCompatPackages above)
     protonup-qt
-    proton-ge-bin
 
     # Wine for non-Steam games
     wineWowPackages.stable

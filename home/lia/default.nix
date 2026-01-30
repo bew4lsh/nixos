@@ -2,6 +2,9 @@
 
 {
   imports = [
+    # Theme options (must be imported before modules that use it)
+    ./colors.nix
+
     # Desktop
     ./niri.nix
     ./quickshell.nix

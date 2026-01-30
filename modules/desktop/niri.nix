@@ -20,7 +20,7 @@
         default = [ "gtk" ];
       };
       niri = {
-        default = [ "gnome" "gtk" ];
+        default = [ "gtk" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
       };
@@ -90,6 +90,9 @@
     wl-clip-persist
     cliphist
 
+    # XWayland support for X11 apps (Java IDEs, etc.)
+    xwayland-satellite
+
     # Screenshot/recording
     grim
     slurp
@@ -129,6 +132,7 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "niri";
     GTK_THEME = "rose-pine";  # Ensure GTK theme is applied
+    _JAVA_AWT_WM_NONREPARENTING = "1";  # Fix Java apps on tiling WMs
   };
 
   # Enable dconf for GTK settings

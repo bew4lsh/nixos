@@ -4,6 +4,7 @@
   # SSH client configuration
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;  # We set our own defaults in matchBlocks."*"
 
     # Use 1Password or other agent (uncomment if using)
     # extraConfig = ''
@@ -53,7 +54,7 @@
   programs.keychain = {
     enable = true;
     keys = [ "id_ed25519" ];
-    agents = [ "ssh" "gpg" ];
+    # agents option removed in keychain 2.9.0 - auto-detects available agents
     extraFlags = [ "--quiet" "--nogui" ];
   };
 

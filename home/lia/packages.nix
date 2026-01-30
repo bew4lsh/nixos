@@ -69,6 +69,9 @@
     nix-diff
     comma  # Run programs without installing
 
+    # Desktop shell
+    quickshell  # For IPC commands with Noctalia
+
     # Misc
     pciutils
     usbutils

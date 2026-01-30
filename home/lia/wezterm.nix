@@ -78,7 +78,7 @@
 
       -- Window configuration
       config.window_background_opacity = 0.95
-      config.window_decorations = 'RESIZE'
+      config.window_decorations = 'NONE'
       config.window_padding = {
         left = 12,
         right = 12,

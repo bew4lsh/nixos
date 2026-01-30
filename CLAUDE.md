@@ -8,6 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Apply configuration changes (replace HOSTNAME with: adrasteia, laptop, virtualbox, minipc)
 sudo nixos-rebuild switch --flake ~/nixos#HOSTNAME
 
+# Test build without applying (dry-run)
+nixos-rebuild dry-build --flake ~/nixos#HOSTNAME
+
 # Update flake inputs
 nix flake update ~/nixos
 
@@ -70,9 +73,10 @@ flake.nix (mkHost helper)
 
 - **mkHost helper**: DRY host definitions in flake.nix
 - **Inputs passed via specialArgs**: Access flake inputs in modules with `{ inputs, ... }:`
+- **Hostname available in home-manager**: Use `{ hostname, ... }:` for host-conditional logic (see `home/lia/wallpaper.nix` for example)
 - **External Neovim config**: Pulled from `github:bew4lsh/nvim` (non-flake input)
 - **Btrfs subvolumes**: `@`, `@home`, `@nix`, `@log`, `@snapshots` with zstd compression
-- **Rosé Pine theming**: Colors defined separately in each relevant file
+- **Rosé Pine theming**: Colors defined separately in each relevant file (no shared theme module)
 
 ### Optional Modules (commented out)
 
@@ -86,3 +90,10 @@ flake.nix (mkHost helper)
 2. Generate hardware config on target: `nixos-generate-config --show-hardware-config`
 3. Add entry to `nixosConfigurations` in `flake.nix`
 4. Build with: `sudo nixos-rebuild switch --flake ~/nixos#<hostname>`
+
+## Post-Install Setup
+
+After fresh install, wallpapers require manual setup:
+```bash
+git clone https://github.com/p4rfait/rose-pine-wallpapers ~/Pictures/rose-pine-wallpapers
+```

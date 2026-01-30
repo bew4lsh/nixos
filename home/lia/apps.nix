@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 let
-  # Rosé Pine colors for Vesktop/Vencord
+  # Read colors from theme options (set by Noctalia in quickshell.nix)
+  colors = config.theme.colors;
+
+  # Generate Vesktop/Vencord CSS from Noctalia's colors
   rosePineCSS = ''
     /**
      * @name Rosé Pine
@@ -10,21 +13,21 @@ let
 
     :root {
       /* Rosé Pine palette */
-      --rp-base: #191724;
-      --rp-surface: #1f1d2e;
-      --rp-overlay: #26233a;
-      --rp-muted: #6e6a86;
-      --rp-subtle: #908caa;
-      --rp-text: #e0def4;
-      --rp-love: #eb6f92;
-      --rp-gold: #f6c177;
-      --rp-rose: #ebbcba;
-      --rp-pine: #31748f;
-      --rp-foam: #9ccfd8;
-      --rp-iris: #c4a7e7;
-      --rp-highlight-low: #21202e;
-      --rp-highlight-med: #403d52;
-      --rp-highlight-high: #524f67;
+      --rp-base: ${colors.base};
+      --rp-surface: ${colors.surface};
+      --rp-overlay: ${colors.overlay};
+      --rp-muted: ${colors.muted};
+      --rp-subtle: ${colors.subtle};
+      --rp-text: ${colors.text};
+      --rp-love: ${colors.love};
+      --rp-gold: ${colors.gold};
+      --rp-rose: ${colors.rose};
+      --rp-pine: ${colors.pine};
+      --rp-foam: ${colors.foam};
+      --rp-iris: ${colors.iris};
+      --rp-highlight-low: ${colors.highlightLow};
+      --rp-highlight-med: ${colors.highlightMed};
+      --rp-highlight-high: ${colors.highlightHigh};
     }
 
     /* Main background */
@@ -131,7 +134,8 @@ in
 
     # Office
     libreoffice-fresh
-    evince     # PDF viewer
+    evince     # PDF viewer (GTK)
+    zathura    # PDF viewer (vim-like)
     foliate    # E-book reader
 
     # Image editing
@@ -157,7 +161,8 @@ in
   # Desktop entries with Wayland flags
   xdg.desktopEntries = {
     vesktop = {
-      name = "Vesktop";
+      name = "Discord";
+      genericName = "Internet Messenger";
       exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland";
       icon = "vesktop";
       terminal = false;
@@ -174,16 +179,8 @@ in
   };
 
   # Vesktop/Vencord Rosé Pine theme
+  # Theme CSS is managed by nix, but settings.json must be mutable for Vesktop to work
   xdg.configFile."vesktop/themes/rose-pine.css".text = rosePineCSS;
-
-  # Vesktop settings to enable custom CSS
-  xdg.configFile."vesktop/settings.json".text = builtins.toJSON {
-    enabledThemes = [ "rose-pine.css" ];
-    transparent = false;
-    tray = true;
-    minimizeToTray = true;
-    arRPC = true;
-  };
 
   # Obsidian Rosé Pine CSS snippet
   # Note: You need to enable CSS snippets in Obsidian settings
