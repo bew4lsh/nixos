@@ -54,7 +54,7 @@
 
     # Noctalia shell (quickshell-based status bar)
     noctalia = {
-      url = "github:Ly-sec/Noctalia";
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
