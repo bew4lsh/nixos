@@ -4,7 +4,7 @@
   imports = [
     # Desktop
     ./niri.nix
-    ./waybar.nix
+    ./quickshell.nix
     ./fuzzel.nix
     ./mako.nix
     ./lock.nix

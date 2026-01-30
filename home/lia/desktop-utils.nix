@@ -16,6 +16,10 @@
 
     # Screenshot annotation (beyond basic grim)
     swappy
+
+    # Noctalia dependencies
+    cava      # Audio visualizer
+    ddcutil   # External monitor brightness control
   ];
 
   # SwayOSD - On-Screen Display for volume/brightness
@@ -49,8 +53,10 @@
   };
 
   # Gammastep - Night light / blue light filter
+  # Disabled - Noctalia integrates wlsunset for color temperature control
+  # Re-enable if you prefer gammastep over Noctalia's built-in control
   services.gammastep = {
-    enable = true;
+    enable = false;
     provider = "manual";
     latitude = 40.7;   # NYC area
     longitude = -74.0;
