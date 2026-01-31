@@ -32,6 +32,21 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+            swap = {
+              size = "32G";  # Size for hibernate (should match RAM)
+              content = {
+                type = "luks";
+                name = "cryptswap";
+                settings = {
+                  allowDiscards = true;
+                  bypassWorkqueues = true;
+                };
+                content = {
+                  type = "swap";
+                  resumeDevice = true;  # Mark as hibernate resume device
+                };
+              };
+            };
             root = {
               size = "100%";
               content = {

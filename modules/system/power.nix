@@ -1,8 +1,7 @@
 # Power management - suspend, hibernate, and sleep configuration
 #
-# NOTE: Hibernate requires a swap partition or file with resume= kernel parameter.
-# For hibernation support, add to boot.kernelParams: "resume=/dev/disk/by-uuid/YOUR-SWAP-UUID"
-# or configure boot.resumeDevice in your host configuration.
+# Hibernate requires a swap partition with resumeDevice = true in disk-config.nix.
+# Disko automatically configures boot.resumeDevice when this is set.
 { config, pkgs, lib, ... }:
 
 {
