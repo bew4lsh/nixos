@@ -20,6 +20,9 @@
     # Noctalia dependencies
     cava      # Audio visualizer
     ddcutil   # External monitor brightness control
+
+    # Display management
+    nwg-displays  # Visual monitor configuration
   ];
 
   # SwayOSD - On-Screen Display for volume/brightness

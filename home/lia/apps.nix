@@ -156,6 +156,9 @@ in
     qalculate-gtk  # Calculator
     gnome-clocks   # World clocks, timers
     gnome-weather  # Weather
+
+    # Calendar
+    kdePackages.merkuro  # Kalendar - Qt calendar app
   ];
 
   # Desktop entries with Wayland flags
