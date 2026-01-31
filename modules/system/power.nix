@@ -24,11 +24,11 @@
     suspendKey = lib.mkDefault "suspend";             # Suspend key (if present)
     hibernateKey = lib.mkDefault "hibernate";         # Hibernate key (if present)
 
-    extraConfig = ''
-      # Idle action (handled by hypridle in user session, so ignore here)
-      IdleAction=ignore
-      IdleActionSec=30min
-    '';
+    # Idle action (handled by hypridle in user session, so ignore here)
+    settings.Login = {
+      IdleAction = "ignore";
+      IdleActionSec = "30min";
+    };
   };
 
   # Security - allow users to suspend/hibernate without password
