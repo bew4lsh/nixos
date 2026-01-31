@@ -33,6 +33,7 @@
   # services.openssh.enable = true;
 
   # Watchtower - auto-update Docker containers
+  # Dockge - Docker Compose management UI (port 5001)
   virtualisation.oci-containers = {
     backend = "docker";
     containers.watchtower = {
@@ -43,6 +44,18 @@
         WATCHTOWER_SCHEDULE = "0 0 4 * * SAT"; # 4am every Saturday (cron format)
         WATCHTOWER_INCLUDE_STOPPED = "true";   # Update stopped containers too
         TZ = "America/New_York";               # Adjust to your timezone
+      };
+    };
+    containers.dockge = {
+      image = "louislam/dockge:1";
+      ports = [ "5001:5001" ];
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock"
+        "/opt/dockge:/app/data"
+        "/opt/stacks:/opt/stacks"
+      ];
+      environment = {
+        DOCKGE_STACKS_DIR = "/opt/stacks";
       };
     };
   };
