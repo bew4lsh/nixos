@@ -32,6 +32,21 @@
   # Server-specific settings
   # services.openssh.enable = true;
 
+  # Watchtower - auto-update Docker containers
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers.watchtower = {
+      image = "containrrr/watchtower:latest";
+      volumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+      environment = {
+        WATCHTOWER_CLEANUP = "true";           # Remove old images after update
+        WATCHTOWER_SCHEDULE = "0 0 4 * * SAT"; # 4am every Saturday (cron format)
+        WATCHTOWER_INCLUDE_STOPPED = "true";   # Update stopped containers too
+        TZ = "America/New_York";               # Adjust to your timezone
+      };
+    };
+  };
+
   # Headless - no desktop environment
   # Uncomment below if you want a desktop:
   # ../../modules/desktop/greetd.nix
