@@ -185,8 +185,8 @@ in
         // Terminal
         Mod+Return { spawn "wezterm"; }
 
-        // Launcher
-        Mod+D { spawn "fuzzel"; }
+        // Launcher (Noctalia built-in)
+        Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
 
         // Close window
         Mod+Shift+Q { close-window; }
@@ -194,8 +194,8 @@ in
         // Quit niri
         Mod+Shift+E { quit; }
 
-        // Lock screen
-        Mod+Escape { spawn "swaylock"; }
+        // Lock screen (Noctalia)
+        Mod+Escape { spawn "qs" "ipc" "call" "lockScreen" "toggle"; }
 
         // Screenshots
         Print { screenshot; }
