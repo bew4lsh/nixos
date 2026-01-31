@@ -64,5 +64,14 @@
     compsize
   ];
 
+  # SSH server
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
   system.stateVersion = "24.11";
 }

@@ -29,8 +29,14 @@
     shell = pkgs.bash;
   };
 
-  # Server-specific settings
-  # services.openssh.enable = true;
+  # SSH server
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   # Watchtower - auto-update Docker containers
   # Dockge - Docker Compose management UI (port 5001)
