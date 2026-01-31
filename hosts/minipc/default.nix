@@ -27,6 +27,10 @@
       "docker"
     ];
     shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      # TODO: Add your SSH public key here
+      # "ssh-ed25519 AAAA... user@host"
+    ];
   };
 
   # SSH server
