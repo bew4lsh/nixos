@@ -8,6 +8,7 @@
     ../system/audio.nix
     ../system/locale.nix
     ../system/maintenance.nix
+    ../system/power.nix
   ];
 
   # Nix settings (shared across all hosts)
