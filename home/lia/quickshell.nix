@@ -73,11 +73,17 @@ in
     # Enabled plugins (keybind-cheatsheet, tailscale, world-clock)
     "noctalia/plugins.json".source = ./noctalia-plugins/plugins.json;
 
-    # World clock plugin - symlink individual files so settings.json can be written at runtime
+    # World clock plugin
+    # Edit noctalia-plugins/world-clock/settings.json to configure:
+    #   - timezones: up to 5 zones (name, timezone ID, enabled)
+    #   - rotationInterval: ms between timezone switches (e.g. 5000 = 5s)
+    #   - timeFormat: use HH for 24h, hh for 12h, mm for minutes, A for AM/PM
+    #                 examples: "HH:mm" (14:30), "hh:mm A" (2:30 PM), "HH:mm:ss"
     "noctalia/plugins/world-clock/Main.qml".source = ./noctalia-plugins/world-clock/Main.qml;
     "noctalia/plugins/world-clock/BarWidget.qml".source = ./noctalia-plugins/world-clock/BarWidget.qml;
     "noctalia/plugins/world-clock/Settings.qml".source = ./noctalia-plugins/world-clock/Settings.qml;
     "noctalia/plugins/world-clock/manifest.json".source = ./noctalia-plugins/world-clock/manifest.json;
     "noctalia/plugins/world-clock/i18n".source = ./noctalia-plugins/world-clock/i18n;
+    "noctalia/plugins/world-clock/settings.json".source = ./noctalia-plugins/world-clock/settings.json;
   };
 }

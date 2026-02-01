@@ -1,0 +1,31 @@
+{
+  "timezones": [
+    {
+      "name": "London",
+      "timezone": "Europe/London",
+      "enabled": true
+    },
+    {
+      "name": "New York",
+      "timezone": "America/New_York",
+      "enabled": false
+    },
+    {
+      "name": "Tokyo",
+      "timezone": "Asia/Tokyo",
+      "enabled": false
+    },
+    {
+      "name": "Sydney",
+      "timezone": "Australia/Sydney",
+      "enabled": false
+    },
+    {
+      "name": "UTC",
+      "timezone": "UTC",
+      "enabled": false
+    }
+  ],
+  "rotationInterval": 5000,
+  "timeFormat": "HH:mm"
+}
