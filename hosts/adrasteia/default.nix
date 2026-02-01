@@ -55,6 +55,10 @@
       "lp"
     ];
     shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      # TODO: Add your SSH public key here
+      # "ssh-ed25519 AAAA... user@host"
+    ];
   };
 
   # Desktop-specific packages
@@ -63,6 +67,15 @@
     btrfs-progs
     compsize
   ];
+
+  # SSH server
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   system.stateVersion = "24.11";
 }

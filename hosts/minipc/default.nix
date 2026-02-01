@@ -27,10 +27,48 @@
       "docker"
     ];
     shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+      # TODO: Add your SSH public key here
+      # "ssh-ed25519 AAAA... user@host"
+    ];
   };
 
-  # Server-specific settings
-  # services.openssh.enable = true;
+  # SSH server
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  # Watchtower - auto-update Docker containers
+  # Dockge - Docker Compose management UI (port 5001)
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers.watchtower = {
+      image = "containrrr/watchtower:latest";
+      volumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+      environment = {
+        WATCHTOWER_CLEANUP = "true";           # Remove old images after update
+        WATCHTOWER_SCHEDULE = "0 0 4 * * SAT"; # 4am every Saturday (cron format)
+        WATCHTOWER_INCLUDE_STOPPED = "true";   # Update stopped containers too
+        TZ = "America/New_York";               # Adjust to your timezone
+      };
+    };
+    containers.dockge = {
+      image = "louislam/dockge:1";
+      ports = [ "5001:5001" ];
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock"
+        "/opt/dockge:/app/data"
+        "/opt/stacks:/opt/stacks"
+      ];
+      environment = {
+        DOCKGE_STACKS_DIR = "/opt/stacks";
+      };
+    };
+  };
 
   # Headless - no desktop environment
   # Uncomment below if you want a desktop:
