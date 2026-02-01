@@ -61,6 +61,23 @@ in
       appLauncher = {
         terminalCommand = "wezterm start --";
       };
+      # Bar widget layout
+      bar = {
+        right = [ "world-clock" "clock" ];
+      };
     };
+  };
+
+  # Noctalia plugin configuration
+  xdg.configFile = {
+    # Enabled plugins (keybind-cheatsheet, tailscale, world-clock)
+    "noctalia/plugins.json".source = ./noctalia-plugins/plugins.json;
+
+    # World clock plugin - symlink individual files so settings.json can be written at runtime
+    "noctalia/plugins/world-clock/Main.qml".source = ./noctalia-plugins/world-clock/Main.qml;
+    "noctalia/plugins/world-clock/BarWidget.qml".source = ./noctalia-plugins/world-clock/BarWidget.qml;
+    "noctalia/plugins/world-clock/Settings.qml".source = ./noctalia-plugins/world-clock/Settings.qml;
+    "noctalia/plugins/world-clock/manifest.json".source = ./noctalia-plugins/world-clock/manifest.json;
+    "noctalia/plugins/world-clock/i18n".source = ./noctalia-plugins/world-clock/i18n;
   };
 }
